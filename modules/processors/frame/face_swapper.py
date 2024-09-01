@@ -41,7 +41,7 @@ def get_face_swapper() -> Any:
         if FACE_SWAPPER is None:
             model_path = resolve_relative_path('../models/inswapper_128_fp16.onnx')
             print("MODEL PATH", model_path)
-            FACE_SWAPPER = insightface.model_zoo.get_model(model_path, providers=["CUDAExecutionProvider"])#modules.globals.execution_providers)
+            FACE_SWAPPER = insightface.model_zoo.get_model(model_path, providers=modules.globals.execution_providers)
             print("FACE SWAPPER", FACE_SWAPPER)
     return FACE_SWAPPER
 
