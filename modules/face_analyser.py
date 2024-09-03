@@ -62,7 +62,8 @@ def get_one_face_right(frame: Frame) -> Optional[Face]:
     return max(faces, key=lambda x: x.bbox[0]) if faces else None
 
 def get_one_face(frame: Frame) -> Optional[Face]:
-    faces = FACE_ANALYSER.get(frame, max_num=1)
+    # faces = FACE_ANALYSER.get(frame, max_num=1)
+    faces = get_face_analyser().get(frame, max_num = 1)
     return faces[0] if faces else None
 
 def get_two_faces(frame: Frame) -> List[Face]:
