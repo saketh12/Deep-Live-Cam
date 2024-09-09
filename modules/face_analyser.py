@@ -41,13 +41,15 @@ FACE_ANALYSER = None
 def initialize_face_analyser():
     global FACE_ANALYSER
     if FACE_ANALYSER is None:
-        FACE_ANALYSER = insightface.app.FaceAnalysis(name='buffalo_l', providers = ["CUDAExecutionProvider"] )#providers=modules.globals.execution_providers)
+        FACE_ANALYSER = insightface.app.FaceAnalysis(name='buffalo_l', providers = modules.globals.execution_providers)
         FACE_ANALYSER.prepare(ctx_id=0, det_size=(640, 640))
 
 def get_face_analyser() -> Any:
     global FACE_ANALYSER
+    print("GET ONE FACE")
     if FACE_ANALYSER is None:
         initialize_face_analyser()
+    print("AFTER GET ONE FACE")
     return FACE_ANALYSER
 
 def get_many_faces(frame: Frame) -> List[Face]:
@@ -63,7 +65,9 @@ def get_one_face_right(frame: Frame) -> Optional[Face]:
 
 def get_one_face(frame: Frame) -> Optional[Face]:
     # faces = FACE_ANALYSER.get(frame, max_num=1)
+    print("BEFORE GET ONE FACE")
     faces = get_face_analyser().get(frame, max_num = 1)
+    print("AFTER GET ONE FACE")
     return faces[0] if faces else None
 
 def get_two_faces(frame: Frame) -> List[Face]:
