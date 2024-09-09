@@ -64,12 +64,21 @@ def get_one_face_right(frame: Frame) -> Optional[Face]:
     faces = FACE_ANALYSER.get(frame)
     return max(faces, key=lambda x: x.bbox[0]) if faces else None
 
-def get_one_face(frame: Frame) -> Optional[Face]:
-    # faces = FACE_ANALYSER.get(frame, max_num=1)
-    print("BEFORE GET ONE FACE")
-    faces = get_face_analyser().get(frame, max_num = 1)
-    print("AFTER GET ONE FACE")
-    return faces[0] if faces else None
+# def get_one_face(frame: Frame) -> Optional[Face]:
+#     # faces = FACE_ANALYSER.get(frame, max_num=1)
+#     print("BEFORE GET ONE FACE")
+#     faces = get_face_analyser().get(frame, max_num = 1)
+#     print("AFTER GET ONE FACE")
+#     return faces[0] if faces else None
+
+def get_one_face(frame: Frame) -> Any:
+    # print("herer before")
+    face = get_face_analyser().get(frame)
+    # print("herere after")
+    try:
+        return min(face, key=lambda x: x.bbox[0])
+    except ValueError:
+        return None
 
 def get_two_faces(frame: Frame) -> List[Face]:
     faces = FACE_ANALYSER.get(frame, max_num=2)
