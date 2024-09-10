@@ -47,10 +47,10 @@ def initialize_face_analyser():
 
 def get_face_analyser() -> Any:
     global FACE_ANALYSER
-    print("GET ONE FACE")
+    # print("GET ONE FACE")
     if FACE_ANALYSER is None:
         initialize_face_analyser()
-    print("AFTER GET ONE FACE")
+    # print("AFTER GET ONE FACE")
     return FACE_ANALYSER
 
 def get_many_faces(frame: Frame) -> List[Face]:
