@@ -73,6 +73,8 @@ def get_one_face_right(frame: Frame) -> Optional[Face]:
 
 def get_one_face(frame: Frame) -> Any:
     print("herer before")
+    print("type of frame", type(frame))
+    print("frame size", frame.size)
     face = get_face_analyser().get(frame)
     print("herere after")
     try:
