@@ -41,7 +41,7 @@ FACE_ANALYSER = None
 def initialize_face_analyser():
     global FACE_ANALYSER
     if FACE_ANALYSER is None:
-        print("PROVIDERS", modules.globals.execution_providers)
+        # print("PROVIDERS", modules.globals.execution_providers)
         FACE_ANALYSER = insightface.app.FaceAnalysis(name='buffalo_l', providers = modules.globals.execution_providers)
         FACE_ANALYSER.prepare(ctx_id=0, det_size=(640, 640))
 
@@ -76,11 +76,11 @@ def get_one_face_right(frame: Frame) -> Optional[Face]:
 #     return faces[0] if faces else None
 
 def get_one_face(frame: Frame) -> Any:
-    print("herer before")
-    print("type of frame", type(frame))
-    print("frame size", frame.size)
+    # print("herer before")
+    # print("type of frame", type(frame))
+    # print("frame size", frame.size)
     face = get_face_analyser().get(frame)
-    print("herere after")
+    # print("herere after")
     try:
         return min(face, key=lambda x: x.bbox[0])
     except ValueError:
